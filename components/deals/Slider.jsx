@@ -1,8 +1,6 @@
 import React from 'react'
 
 
-
-
 const featuredProducts = [
     "./food.jpg",
     "./grid-image.jpg",
