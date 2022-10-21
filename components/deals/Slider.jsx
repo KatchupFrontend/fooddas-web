@@ -6,7 +6,6 @@ const featuredProducts = [
     "./grid-image.jpg",
     "./party01.jpg"
 ];
-
 const Slider = () => {
     
   return (
