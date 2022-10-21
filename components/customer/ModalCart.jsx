@@ -1,9 +1,6 @@
 
 
 const ModalCart = () => {
-  
-
-
   return (
     <div className="">
       <div class="relative z-10  ">
