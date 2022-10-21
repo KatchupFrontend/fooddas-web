@@ -1,9 +1,7 @@
 
 
-const ModalCart = ({show, onClose}) => {
-  if(!open) {
-    return null;
-  }
+const ModalCart = () => {
+  
 
 
   return (
