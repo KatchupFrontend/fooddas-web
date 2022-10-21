@@ -3,7 +3,8 @@ export const data = [
     id: 1,
     name: "Pizza",
     price: 10,
-    image: "./food.jpg",
+    image:
+      "https://cdn.shopify.com/s/files/1/1153/4418/articles/banku-tilapia_800x.jpeg?v=1558561132",
     vendor: "Tasty Queen Kitchen.",
     category: "dinner",
     location: "Kumasi",

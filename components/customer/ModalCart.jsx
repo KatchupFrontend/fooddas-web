@@ -11,16 +11,16 @@ const ModalCart = ({show, onClose}) => {
       <div class="relative z-10  ">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-        <div class="flex  inset-0 overflow-hidden ">
-          <div class="absolute inset-0 overflow-hidden">
-            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+        <div class="flex  inset-0 overflow-hidden  justify-center">
+          <div class=" flex justify-center items-center overflow-hidden">
+            <div class="pointer-events-none fixed inset-y-0 justify-center items-center flex max-w-full ">
               <div class="pointer-events-auto w-screen max-w-md">
                 <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                   <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                     <div class="flex items-start justify-between">
                       <h2
                         class="text-lg font-medium text-gray-900"
-                        id="slide-over-title"
+                        
                       >
                         Shopping cart
                       </h2>
@@ -29,8 +29,6 @@ const ModalCart = ({show, onClose}) => {
                           type="button"
                           class="-m-2 p-2 text-gray-400 hover:text-gray-500"
                         >
-                          <span class="">Close panel</span>
-
                           <svg
                             class="h-6 w-6"
                             xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +76,7 @@ const ModalCart = ({show, onClose}) => {
                                 <div class="flex">
                                   <button
                                     type="button"
-                                    class="font-medium text-indigo-600 hover:text-indigo-500"
+                                    class="font-medium text-red-600 hover:text-red-500"
                                   >
                                     Remove
                                   </button>
@@ -112,7 +110,7 @@ const ModalCart = ({show, onClose}) => {
                                 <div class="flex">
                                   <button
                                     type="button"
-                                    class="font-medium text-indigo-600 hover:text-indigo-500"
+                                    class="font-medium text-red-600 hover:text-red-500"
                                   >
                                     Remove
                                   </button>
@@ -126,11 +124,11 @@ const ModalCart = ({show, onClose}) => {
                   </div>
 
                   <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
-                    <div class="flex justify-between text-base font-medium text-gray-900">
+                    <div class="flex justify-between text-base font-medium text-gray-700">
                       <p>Subtotal</p>
                       <p>$22.00</p>
                     </div>
-                    <div class="flex justify-between text-base font-medium text-gray-900">
+                    <div class="flex justify-between text-base font-medium text-gray-700">
                       <p>Delivery fee</p>
                       <p>$2.00</p>
                     </div>
@@ -143,7 +141,7 @@ const ModalCart = ({show, onClose}) => {
                     <div class="mt-6">
                       <a
                         href="#"
-                        class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                        class="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
                       >
                         Checkout
                       </a>
@@ -151,10 +149,10 @@ const ModalCart = ({show, onClose}) => {
                     <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                       <p>
                         or
-                        <button
+                         <button
                           type="button"
-                          class="font-medium text-indigo-600 hover:text-indigo-500"
-                        >
+                          class="p-1 font-medium text-red-600 hover:text-red-500"
+                        > 
                           Continue Shopping
                           <span aria-hidden="true"> &rarr;</span>
                         </button>
