@@ -9,7 +9,7 @@ const Featured = () => {
             <h1>Our Party Offers</h1>
           </div>
           <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-            <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
+            <div className="p-4 md:w-1/3 ">
               <div className="rounded-lg h-64 overflow-hidden">
                 <img
                   alt="content"
@@ -21,7 +21,7 @@ const Featured = () => {
                 Mini Party
               </h2>
               <p className="text-base leading-relaxed mt-2">
-                Grab this offer and enjoy with your  five(5) member party.
+                Grab. hhhh hhhhh Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum rem odit debitis. Voluptatibus libero rem praesentium. Dolorem eum numqu
               </p>
               <a className="text-red-500 inline-flex items-center mt-3">
                 See More
