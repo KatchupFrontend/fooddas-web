@@ -1,47 +1,47 @@
 
 
-const ModalCart = ({open, onClose}) => {
-  if (!open) return null;
+const Checkout = () => {
   return (
-    <div className="">
-      <div class="relative z-10  ">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-
-        <div class="flex  inset-0 overflow-hidden  justify-center ">
-          <div class=" flex justify-center items-center overflow-hidden">
-            <div class="pointer-events-none fixed inset-y-0 justify-center items-center flex max-w-full backdrop-blur-sm bg-white/30">
+    <div className="md:flex">
+      <div className="md:w-2/3 ">
+        <div class="">
+          <div class="py-12">
+            <div class="max-w-md  rounded-lg md:max-w-xl ">
+              <div class="md:flex ">
+                <div class="w-full p-4   py-5">
+                  <span>Customer Information</span>
+                  <div class=" pb-5">
+                    {" "}
+                    <input type="text" name="mail" placeholder="E-mail" />{" "}
+                  </div>
+                  <span>Shipping Address</span>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="First name"
+                      className="p-2 border rounded"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Last name"
+                      className="p-2"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="md:w-1/3 md:flex md:justify-end">
+        <div class="flex   justify-center md:mx-5">
+          <div class=" flex justify-center items-center ">
+            <div class="  justify-center items-center flex max-w-full ">
               <div class="pointer-events-auto w-screen max-w-md ">
-                <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
-                  <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6 ">
-                    <div class="flex items-start justify-between">
-                      <h2 class="text-lg font-medium text-gray-900">
-                        Shopping cart
-                      </h2>
-                      <div class="ml-3 flex h-7 items-center">
-                        <button
-                          onClick={onClose}
-                          type="button"
-                          class="-m-2 p-2 text-gray-400 hover:text-gray-500"
-                        >
-                          <svg
-                            class="h-6 w-6"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-
+                <div class="flex h-full flex-col  bg-white  ">
+                  <div class="flex-1  py-6 px-4 sm:px-6 ">
                     <div class="mt-8">
                       <div class="flow-root">
                         <ul role="list" class="-my-6 divide-y divide-gray-200">
@@ -137,7 +137,7 @@ const ModalCart = ({open, onClose}) => {
                         href="#"
                         class="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
                       >
-                        Checkout
+                        Place order
                       </a>
                     </div>
                     <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
@@ -163,4 +163,4 @@ const ModalCart = ({open, onClose}) => {
   );
 }
 
-export default ModalCart
+export default Checkout
