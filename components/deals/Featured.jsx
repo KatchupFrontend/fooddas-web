@@ -47,12 +47,10 @@ const Featured = () => {
                 />
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
-                A royal is born
+                A royal's hub 
               </h2>
               <p className="text-base leading-relaxed mt-2">
                 Graa 10 - 20 member party.
-                You get a f drink  (Kasapreko)
-                Y
               </p>
               <a className="text-red-500 inline-flex items-center mt-3">
                 See More
