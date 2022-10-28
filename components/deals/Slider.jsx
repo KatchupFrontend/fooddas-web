@@ -11,11 +11,7 @@ const featuredProducts = [
 const Slider = () => {
   
 
-       
-
-
-
-
+      
   return (
     <div className="">
       <div className="w-full select-none">
