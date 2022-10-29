@@ -11,7 +11,12 @@ const Login = ()=>{
     password: "",
    })
    
-   const handleLogin =
+   const handleLogin = (e) => {
+    e.preventDefault();
+    
+  };
+
+  
 
   return (
     <div className="">
@@ -59,7 +64,7 @@ const Login = ()=>{
               </p>
               <hr class="w-full bg-gray-400  " />
             </div>
-            <Form>
+            <Form onSubmit={handleLogin}>
               <div>
                 <label
                   id="email"
