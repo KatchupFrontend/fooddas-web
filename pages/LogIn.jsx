@@ -1,8 +1,17 @@
-import React from 'react'
+
 import Link from 'next/link'
+import { UserAuth } from  './context/AuthContext';
+import { useState } from 'react';
 
 
-const LogIn = () => {
+
+const Login = ()=>{
+   const [data, setdata] = useState({
+    email: "",
+    password: "",
+   })
+   
+   const handleLogin =
 
   return (
     <div className="">

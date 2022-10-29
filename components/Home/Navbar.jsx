@@ -1,6 +1,8 @@
 import {FaRegMoon} from 'react-icons/fa'
 import Link from 'next/link';
-import {sighIn, signOut ,useSession} from 'next-auth/client'
+
+
+
 const Navbar = () => {
   return (
     <div className="flex justify-between py-4 px-4 ">
