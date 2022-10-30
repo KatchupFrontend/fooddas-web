@@ -56,7 +56,7 @@ const LogIn = ()=>{
               </p>
               <hr className="w-full bg-gray-400  " />
             </div>
-            <form onSubmit={handleLogin}>
+            <form >
               <div>
                 <label
                   id="email"
