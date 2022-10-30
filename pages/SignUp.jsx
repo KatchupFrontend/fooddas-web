@@ -32,7 +32,7 @@ const SignUp = () => {
             
 
            
-            <form onSubmit={handleSignUp}>
+            <form >
               <div>
                 <label
                   id="email"
@@ -44,7 +44,7 @@ const SignUp = () => {
                   aria-labelledby="email"
                   type="email"
                   className="bg-gray-200 border rounded  text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                  onChange={(e) => setdata({ ...data, email: e.target.value })}
+                  
                 />
               </div>
               <div className="mt-6  w-full">
@@ -59,9 +59,7 @@ const SignUp = () => {
                     id="pass"
                     type="password"
                     className="bg-gray-200 border rounded  text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                    onChange={(e) =>
-                      setdata({ ...data, password: e.target.value })
-                    }
+                    
                   />
                   <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                     <img
