@@ -3,24 +3,7 @@ import { useState } from "react";
 import { UserAuth } from "../Context/AuthContext";
 import { useRouter } from "next/router";
 const SignUp = () => {
-  const { user,signup} = UserAuth();
-
-  const [data, setdata] = useState({
-    email: "",
-    password: "",
-  }); 
-
-    const handleSignUp = async (e) => {
-    e.preventDefault();
-    console.log(user)
-    try{
-      await signup(data.email, data.password)
-    }
-    catch(err){
-      console.log(err)
-
-    }
-  }
+ 
     
 
   return (
