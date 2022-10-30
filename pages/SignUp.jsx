@@ -1,29 +1,27 @@
+import Link from "next/link";
+import { useState } from "react";
+import { UserAuth } from "../Context/AuthContext";
+import { useRouter } from "next/router";
+const SignUp = () => {
+  const { user,signup} = UserAuth();
 
-import Link from 'next/link'
-import { useState } from 'react';
-import { UserAuth } from '../Context/AuthContext';
-import  { useRouter } from 'next/router';
+  const [data, setdata] = useState({
+    email: "",
+    password: "",
+  }); 
 
+    const handleSignUp = async (e) => {
+    e.preventDefault();
+    console.log(user)
+    try{
+      await signup(data.email, data.password)
+    }
+    catch(err){
+      console.log(err)
 
-const LogIn = ()=>{
-   const router = useRouter();
-   const { user, login } = UserAuth();
-   const [data, setdata] = useState({
-     email: "",
-     password: "",
-   });
-
-   const handleLogin = async (e) => {
-     e.preventDefault();
-
-     console.log(user);
-     try {
-       await login(data.email, data.password);
-       router.push("/SignUp");
-     } catch (err) {
-       console.log(err);
-     }
-   };
+    }
+  }
+    
 
   return (
     <div className="">
@@ -37,41 +35,23 @@ const LogIn = ()=>{
               tabindex="0"
               className="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800"
             >
-              Login to your account
+              Create an account
             </p>
             <p
               tabindex="0"
               className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500"
             >
-              Dont have account?
-              <Link href="/SignUp">
+              Already have account?
+              <Link href="/LogIn">
                 <span className="text-red-500 hover:text-red-600 hover:cursor-pointer">
-                  Sign up here
+                  Login
                 </span>
               </Link>
             </p>
-            <button
-              aria-label="Continue with google"
-              role="button"
-              className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex hover:bg-gray-100 items-center w-full mt-10"
-            >
-              <img
-                src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg"
-                alt="google"
-              />
-              <p className="text-base font-medium ml-4 text-gray-700">
-                Continue with Google
-              </p>
-            </button>
+            
 
-            <div className="w-full flex items-center justify-between py-5">
-              <hr className="w-full bg-gray-400" />
-              <p className="text-base font-medium leading-4 px-2.5 text-gray-400">
-                OR
-              </p>
-              <hr className="w-full bg-gray-400  " />
-            </div>
-            <form onSubmit={handleLogin}>
+           
+            <form onSubmit={handleSignUp}>
               <div>
                 <label
                   id="email"
@@ -98,7 +78,9 @@ const LogIn = ()=>{
                     id="pass"
                     type="password"
                     className="bg-gray-200 border rounded  text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                    onChange={(e) => setdata({ ...data, password: e.target.value })}
+                    onChange={(e) =>
+                      setdata({ ...data, password: e.target.value })
+                    }
                   />
                   <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                     <img
@@ -112,9 +94,9 @@ const LogIn = ()=>{
                 <button
                   type="submit"
                   className="focus:ring-2 focus:ring-offset-2 focus:ring-red-700 text-sm font-semibold leading-none text-white focus:outline-none bg-red-500 border rounded hover:bg-red-600 py-4 w-full"
+                
                 >
-            
-                  Log In
+                  Create Account
                 </button>
               </div>
             </form>
@@ -123,6 +105,6 @@ const LogIn = ()=>{
       </div>
     </div>
   );
-}
+};
 
-export default LogIn
+export default SignUp;
