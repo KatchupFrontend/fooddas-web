@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
-import { UserAuth } from "../Context/AuthContext";
-import { useRouter } from "next/router";
+
 const SignUp = () => {
  
     
