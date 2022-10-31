@@ -1,9 +1,13 @@
 import {FaRegMoon} from 'react-icons/fa'
 import Link from 'next/link';
+import { useContext } from 'react';
+
 
 
 
 const Navbar = () => {
+  
+
   return (
     <div className="flex justify-between py-4 px-4 ">
       <div>

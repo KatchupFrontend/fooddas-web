@@ -8,6 +8,8 @@ export const data = [
     vendor: "Tasty Queen Kitchen.",
     category: "dinner",
     location: "Kumasi",
+    rating: 3,
+    numReviews: 8,
   },
   {
     id: 2,
@@ -17,6 +19,8 @@ export const data = [
     vendor: "Sweet Mummy's Kitchen",
     category: "dinner",
     location: "Kumasi",
+    rating: 3,
+    numReviews: 8,
   },
   {
     id: 3,
@@ -26,6 +30,8 @@ export const data = [
     vendor: "Pizzaman' Kitchen",
     category: "dinner",
     location: "Accra",
+    rating: 3,
+    numReviews: 8,
   },
   {
     id: 4,
@@ -35,6 +41,8 @@ export const data = [
     vendor: "Hajia's Breakfast Hub",
     category: "breakfast",
     location: "Kumasi",
+    rating: 3,
+    numReviews: 8,
   },
   {
     id: 5,
@@ -44,6 +52,8 @@ export const data = [
     vendor: "Rachael B's Kitchen",
     category: "lunch",
     location: "Kumasi",
+    rating: 3,
+    numReviews: 8,
   },
   {
     id: 6,
@@ -53,6 +63,8 @@ export const data = [
     vendor: "Rachael B's Kitchen",
     category: "lunch",
     location: "Accra",
+    rating: 3,
+    numReviews: 8,
   },
   {
     id: 7,
@@ -62,6 +74,8 @@ export const data = [
     vendor: "Rachael B's Kitchen",
     category: "lunch",
     location: "Accra",
+    rating: 3,
+    numReviews: 8,
   },
   {
     id: 8,
@@ -71,6 +85,8 @@ export const data = [
     vendor: "Rachael B's Kitchen",
     category: "lunch",
     location: "Accra",
+    rating: 3,
+    numReviews: 8,
   },
   {
     id: 9,
@@ -80,5 +96,7 @@ export const data = [
     vendor: "Rachael B's Kitchen",
     category: "lunch",
     location: "Accra",
+    rating: 3,
+    numReviews: 8,
   },
 ];

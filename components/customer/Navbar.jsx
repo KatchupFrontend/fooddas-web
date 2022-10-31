@@ -1,10 +1,15 @@
 import { FaRegMoon } from "react-icons/fa";
 import Link from "next/link";
 import {AiOutlineShoppingCart} from 'react-icons/ai'
+import { Store } from "../../context/Store";
+import { useContext } from "react";
 
 const Navbar = () => {
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+
   return (
-    <div className="flex justify-between py-4 px-4 ">
+    <div className="flex shadow-lg fixed z-50 bg-white justify-between py-4 px-4 w-full ">
       <div>
         <img src="./logo.png" alt="" className="w-40 h-10" />
       </div>
@@ -14,6 +19,11 @@ const Navbar = () => {
         </div>
         <div className="m-1 ">
             <AiOutlineShoppingCart size={29}/>
+            {cart.cartItems.length > 0 && (
+            <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+              {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+            </span>
+            )}
         </div>
         <div className="hidden md:flex">
           <Link href="/LogIn">

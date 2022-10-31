@@ -1,13 +1,13 @@
+import { StoreProvider } from '../context/Store'
 import '../styles/globals.css'
-import { AuthContextProvider } from '../Context/AuthContext'
+
 function MyApp({ Component, pageProps }) {
 
-  return(
-    <AuthContextProvider>
-
- <Component {...pageProps} />;
-   </AuthContextProvider>
-  )
+  return (
+    <StoreProvider>
+      <Component {...pageProps} />
+    </StoreProvider>
+  );
  
 }
 

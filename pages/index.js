@@ -1,13 +1,12 @@
-import Navbar from "../components/Home/Navbar"
-import SignUp from "./SignUp"
+import Landing from "../components/Home/Landing"
 
 
 
 const Home = () => {
   return (
-    <div className="max-w-screen-xl m-auto mb-20">
-      <Navbar/>
-    <SignUp/>
+    <div className="">
+    <Landing/>
+
     </div>
   )
 }

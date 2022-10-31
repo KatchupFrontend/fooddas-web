@@ -89,6 +89,7 @@ const LogIn = ()=>{
                 <button
                   type="submit"
                   className="focus:ring-2 focus:ring-offset-2 focus:ring-red-700 text-sm font-semibold leading-none text-white focus:outline-none bg-red-500 border rounded hover:bg-red-600 py-4 w-full"
+                  href="/customer"
                 >
             
                   Log In
