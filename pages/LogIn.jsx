@@ -1,11 +1,39 @@
+import Link from 'next/link';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
-import Link from 'next/link'
+
+import { useRouter } from 'next/router';
 
 
-const LogIn = ()=>{
+const LogIn = () => {
 
+
+     const router = useRouter();
+     const { redirect } = router.query;
+
+    
+     const {
+       handleSubmit,
+       register,
+       formState: { errors },
+     } = useForm();
+     const submitHandler = async ({ email, password }) => {
+       try {
+         const result = await signIn("credentials", {
+           redirect: false,
+           email,
+           password,
+         });
+         if (result.error) {
+           toast.error(result.error);
+         }
+       } catch (err) {
+         toast.error(getError(err));
+       }
+     };
   return (
-    <div className="">
+    <div>
       <div className="bg-white  shadow-xl py-2 px-4 fixed w-full">
         <img src="./logo.png" alt="" className="w-40 h-10 p-1" />
       </div>
@@ -50,51 +78,57 @@ const LogIn = ()=>{
               </p>
               <hr className="w-full bg-gray-400  " />
             </div>
-            <form >
-              <div>
-                <label
-                  id="email"
-                  className="text-sm font-medium leading-none text-gray-800"
-                >
-                  Email
-                </label>
-                <input
-                  aria-labelledby="email"
-                  type="email"
-                  className="bg-gray-200 border rounded  text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                 />
-              </div>
-              <div className="mt-6  w-full">
-                <label
-                  for="pass"
-                  className="text-sm font-medium leading-none text-gray-800"
-                >
+
+            <form onSubmit={handleSubmit(submitHandler)}>
+              <div className="relative flex items-center justify-center flex-col ">
+                <label htmlFor="password" className="">
                   Password
                 </label>
-                <div className="relative flex items-center justify-center">
-                  <input
-                    id="pass"
-                    type="password"
-                    className="bg-gray-200 border rounded  text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                     />
-                  <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
-                    <img
-                      src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg5.svg"
-                      alt="viewport"
-                    />
-                  </div>
-                </div>
+                <input
+                  type="password"
+                  {...register("password", {
+                    required: "Please enter password",
+                    minLength: {
+                      value: 6,
+                      message: "password is more than 5 chars",
+                    },
+                  })}
+                  className="bg-gray-200 border rounded  text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                  id="password"
+                  autoFocus
+                ></input>
+                {errors.password && (
+                  <div className="text-red-500 ">{errors.password.message}</div>
+                )}
               </div>
-              <div className="mt-8">
-                <button
-                  type="submit"
-                  className="focus:ring-2 focus:ring-offset-2 focus:ring-red-700 text-sm font-semibold leading-none text-white focus:outline-none bg-red-500 border rounded hover:bg-red-600 py-4 w-full"
-                  href="/customer"
-                >
-            
-                  Log In
-                </button>
+              <div className="mt-10 pt-5">
+                <label htmlFor="password" className="">
+                  Password
+                </label>
+                        
+
               </div>
+              {/* <div className="relative flex items-center justify-center flex-col mt-10">
+                <label htmlFor="password" className="">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  {...register("password", {
+                    required: "Please enter password",
+                    minLength: {
+                      value: 6,
+                      message: "password is more than 5 chars",
+                    },
+                  })}
+                  className="bg-gray-200 border rounded  text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                  id="password"
+                  autoFocus
+                ></input>
+                {errors.password && (
+                  <div className="text-red-500 ">{errors.password.message}</div>
+                )}
+              </div> */}
             </form>
           </div>
         </div>

@@ -1,9 +1,9 @@
 import { createContext, useReducer } from "react";
-
+import Cookies from "js-cookie";
  export const Store = createContext();
 
  const initialState = {
-    cart: { cartItems: [] },
+    cart: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : { cartItems: [] },
  };
 
  function reducer( state, action){
@@ -18,6 +18,7 @@ import { createContext, useReducer } from "react";
                 item.name === existItem.name ? newItem : item
               )
             : [...state.cart.cartItems, newItem];
+            Cookies.set('cart', JSON.stringify({  ...state.cart ,cartItems }));
           return { ...state, cart: { cartItems } };
         }
                 

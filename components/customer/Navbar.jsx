@@ -2,13 +2,19 @@ import { FaRegMoon } from "react-icons/fa";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Store } from "../../context/Store";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ModalCart from "./ModalCart";
 
 const Navbar = () => {
   const [openModal, setOpenModal] = useState(false);
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
+  const [cartItemsCount , setCartItemsCount] = useState(0);
+  useEffect (() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
+  
+
 
   return (
     <div>
@@ -28,9 +34,9 @@ const Navbar = () => {
               className="relative cursor-pointer"
               onClick={() => setOpenModal(true)}
             />
-            {cart.cartItems.length > 0 && (
+            {cartItemsCount > 0 && (
               <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white absolute top-0 pt-2">
-                {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                {cartItemsCount}
               </span>
             )}
           </div>

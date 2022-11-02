@@ -24,7 +24,7 @@ const Hero = () => {
                       className="p-2 rounded-sm border-gray-400 border focus:outline-red-500"
                       placeholder="Enter delivery address"
                     />
-                    <button class="flex  text-white bg-red-500 border-0 py-2 px-6  focus:outline-red-500 hover:bg-indigo-600 ">
+                    <button class="flex  text-white bg-red-500 border-0 py-2 px-6  focus:outline-red-500 hover:bg-red-600 ">
                       Find Food
                     </button>
                   </div>

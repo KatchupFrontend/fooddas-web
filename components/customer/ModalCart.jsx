@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useContext } from "react";
 import {Store} from "../../context/Store";
-
+import  dynamic from 'next/dynamic'
 
 
 
@@ -154,4 +154,4 @@ const ModalCart = ({open, onClose}) => {
   );
 }
 
-export default ModalCart
+export default dynamic(() => Promise.resolve(ModalCart), {ssr: false});
