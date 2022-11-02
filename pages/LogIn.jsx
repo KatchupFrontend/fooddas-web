@@ -19,18 +19,8 @@ const LogIn = () => {
        formState: { errors },
      } = useForm();
      const submitHandler = async ({ email, password }) => {
-       try {
-         const result = await signIn("credentials", {
-           redirect: false,
-           email,
-           password,
-         });
-         if (result.error) {
-           toast.error(result.error);
-         }
-       } catch (err) {
-         toast.error(getError(err));
-       }
+        console.log(email, password);
+       
      };
   return (
     <div>
