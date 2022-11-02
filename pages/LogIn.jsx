@@ -80,35 +80,28 @@ const LogIn = () => {
             </div>
 
             <form onSubmit={handleSubmit(submitHandler)}>
-              <div className="relative flex items-center justify-center flex-col ">
-                <label htmlFor="password" className="">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  {...register("password", {
-                    required: "Please enter password",
-                    minLength: {
-                      value: 6,
-                      message: "password is more than 5 chars",
-                    },
-                  })}
-                  className="bg-gray-200 border rounded  text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                  id="password"
-                  autoFocus
-                ></input>
-                {errors.password && (
-                  <div className="text-red-500 ">{errors.password.message}</div>
-                )}
-              </div>
               <div className="mt-10 pt-5">
                 <label htmlFor="password" className="">
                   Password
                 </label>
-                        
 
+                <input
+                  type="email"
+                  className="bg-gray-200 border rounded  text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                  placeholder="Email"
+                  {...register("email", {
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  autoFocus
+                />
+                {errors.email && (
+                  <p className="text-red-500">{errors.email.message}</p>
+                )}
               </div>
-              {/* <div className="relative flex items-center justify-center flex-col mt-10">
+              <div className="relative flex  flex-col mt-5">
                 <label htmlFor="password" className="">
                   Password
                 </label>
@@ -128,7 +121,9 @@ const LogIn = () => {
                 {errors.password && (
                   <div className="text-red-500 ">{errors.password.message}</div>
                 )}
-              </div> */}
+              </div>
+
+            
             </form>
           </div>
         </div>
