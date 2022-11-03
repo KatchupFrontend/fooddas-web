@@ -1,15 +1,54 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import User from "../../../models/User";
+import db from "../../../context/db";
+import bcryptjs from "bcryptjs";
+import CredentialProvider from "next-auth/providers/credentials";
+// export const authOptions = {
+//   // Configure one or more authentication providers
+//   providers: [
+//     GoogleProvider({
+//       clientId: process.env.GOOGLE_ID,
+//       clientSecret: process.env.GOOGLE_SECRET,
+//     }),
+//     // ...add more providers here
+//   ],
+// };
 
-export const authOptions = {
-  // Configure one or more authentication providers
+export default NextAuth({
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user?._id) token._id = user._id;
+      if (user?.isAdmin) token.isAdmin = user.isAdmin;
+      return token;
+    },
+    async session ({ session, token }) {
+      if (token?._id) session._id = token._id;
+      if (token?.isAdmin) session.isAdmin = token.isAdmin;
+      return session;
+  },
+},
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
-    }),
-    // ...add more providers here
-  ],
-};
+    CredentialProvider({
+      async authorize(credentials){
+        await db.connect();
+        const user = await User.findOne({ email: credentials.email });
+        await db.disconnect();
+        if (user &&  bcryptjs.compareSync(credentials.password, user.password))  {
+          return {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            image: 'f',
+            isAdmin: user.isAdmin,
+        
+          };
+        }
+        throw new Error("Invalid email or password");
+      }
+    })
+  ]  
 
-export default NextAuth(authOptions);
+});

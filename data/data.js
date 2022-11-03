@@ -1,4 +1,22 @@
-export const data = [
+import bcrypt from 'bcryptjs';
+
+export const data = {
+  users: [
+    {
+      name: 'kylesams',
+      email: 'kyleadmin@gmail.com',
+      password: bcrypt.hashSync('powersam360', 8),
+      isAdmin: true,
+    },
+    {
+      name: 'kyle',
+      email: 'powersam360@gmail.com',
+      password: bcrypt.hashSync('powersam360', 8),
+      isAdmin: false,
+    },
+
+  ],
+  foods: [
   {
     id: 1,
     name: "Pizza",
@@ -99,4 +117,5 @@ export const data = [
     rating: 3,
     numReviews: 8,
   },
-];
+  ]
+}
