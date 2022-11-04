@@ -1,19 +1,18 @@
 import Banner from "../components/customer/Banner"
-import Navbar from "../components/customer/Navbar"
 import Tabs from '../components/customer/Tabs'
 import Product from '../components/customer/Product'
-import Footer from "../components/Home/Footer"
+import Layout from "../components/customer/Layout"
 
 const customer = () => {
   return (
     <div>
-        <Navbar/>
+    <Layout>
         <Banner/>
-        <Tabs/>
-        <Product/>
-        <Footer/>
+        <Tabs />
+        <Product />
+      </Layout>
     </div>
-  )
+  );
 }
 
 export default customer

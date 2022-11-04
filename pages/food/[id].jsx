@@ -1,8 +1,8 @@
 import { FiShare2 } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
-import Navbar from "../../components/customer/Navbar";
 import { useContext } from "react";
 import { Store } from "../../context/Store";
+import Layout from "../../components/customer/Layout";
 
 
 const Food = ({ food: { food } }) => {
@@ -16,7 +16,7 @@ const Food = ({ food: { food } }) => {
 
   return (
     <div>
-      <Navbar />
+      <Layout>
       <div className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -64,6 +64,7 @@ const Food = ({ food: { food } }) => {
           </div>
         </div>
       </div>
+      </Layout>
     </div>
   );
 };

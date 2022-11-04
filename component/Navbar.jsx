@@ -1,7 +1,7 @@
 import {FaRegMoon} from 'react-icons/fa'
 import Link from 'next/link';
 import { useContext, useState } from 'react';
-import { BiMenuAltRight } from 'react-icons/bi';
+import { BiCart, BiMenuAltRight } from 'react-icons/bi';
 import { FaTimes } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
 
@@ -13,7 +13,9 @@ const Navbar = () => {
   return (
     <div className="flex justify-between py-4 px-4 ">
       <div>
-        <img src="./logo.png" alt="" className="w-40 h-10" />
+        <Link href="/">
+          <img src="./logo.png" alt="" className="w-40 h-10" />
+        </Link>
       </div>
       <div className="flex">
         <div className="bg-gray-200 m-1 px-2 rounded-md py-1 hover:bg-gray-300">
@@ -26,19 +28,16 @@ const Navbar = () => {
             session.user.name
           ) : (
             <Link href="/LogIn">
-              <button className="bg-red-400 text-white px-4 py-2 rounded-lg m-1">
+              <button className="bg-red-500 text-white px-4 py-2 rounded-lg m-1">
                 Log In
               </button>
             </Link>
           )}
-          <Link href="/LogIn">
-            <button className="py-1 px-4 bg-red-500 text-white rounded-lg hover:text-blue hover:bg-red-600 m-1">
-              Log in
-            </button>
-          </Link>
-          <button className="py-1 px-4 bg-gray-200  rounded-lg hover:text-blue hover:bg-gray-300 m-1">
-            Sign up
-          </button>
+         
+          
+        </div>
+        <div className='m-2'>
+          <BiCart size={30}/>
         </div>
         <div
           className=" flex md:hidden m-2 cursor-pointer"

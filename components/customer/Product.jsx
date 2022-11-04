@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {CgShoppingCart} from 'react-icons/cg'
 import { BiTimer } from "react-icons/bi";
 import Link from 'next/link';
-import { data } from '../../data/data';
+import { data } from '../../data/data'
 
 
 const Product = () => {
