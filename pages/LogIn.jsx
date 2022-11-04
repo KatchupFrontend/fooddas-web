@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-
+import signIn, { useSession } from 'next-auth/react'
 
 import { useRouter } from 'next/router';
 
 
 const LogIn = () => {
+    const { data: session } = useSession();
 
 
      const router = useRouter();
@@ -19,7 +20,19 @@ const LogIn = () => {
        formState: { errors },
      } = useForm();
      const submitHandler = async ({ email, password }) => {
-        console.log(email, password);
+        try{
+            const result = await signIn('credentials',{
+                email,
+                password,
+                redirect: false,
+            });
+            if (result.error){
+                toast.error(getError(err));
+            }
+
+        }catch(err){
+            toast.error(getError(err));
+        }
        
      };
   return (
