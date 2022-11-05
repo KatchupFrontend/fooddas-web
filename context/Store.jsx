@@ -11,16 +11,21 @@ import Cookies from "js-cookie";
         case 'CART_ADD_ITEM': {
           const newItem = action.payload;
           const existItem = state.cart.cartItems.find(
-            (item) => item.id === newItem.id
+            (food) => food.id === newItem.id
           );
             const cartItems = existItem
             ? state.cart.cartItems.map((item) =>
-                item.name === existItem.name ? newItem : item
+                food.name === existItem.name ? newItem : food
               )
             : [...state.cart.cartItems, newItem];
             Cookies.set('cart', JSON.stringify({  ...state.cart ,cartItems }));
           return { ...state, cart: { cartItems } };
         }
+        case 'CART_REMOVE_ITEM': {
+          const cartItems = state.cart.cartItems.filter(
+            (food) => food.id !== action.payload.id
+          )
+        };
                 
         default:
             return state;
