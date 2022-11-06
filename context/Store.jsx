@@ -14,7 +14,7 @@ import Cookies from "js-cookie";
             (food) => food.id === newItem.id
           );
             const cartItems = existItem
-            ? state.cart.cartItems.map((item) =>
+            ? state.cart.cartItems.map((food) =>
                 food.name === existItem.name ? newItem : food
               )
             : [...state.cart.cartItems, newItem];
@@ -24,7 +24,9 @@ import Cookies from "js-cookie";
         case 'CART_REMOVE_ITEM': {
           const cartItems = state.cart.cartItems.filter(
             (food) => food.id !== action.payload.id
-          )
+          );
+          Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
+          return { ...state, cart: {...state.cart,  cartItems } };
         };
                 
         default:

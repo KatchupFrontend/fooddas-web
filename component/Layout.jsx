@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Navbar from "./Navbar";
 import Footer from './Footer'
+import { useEffect } from "react";
 const Layout = ({ children, title }) => {
+  
   return (
     <div>
       <Head>

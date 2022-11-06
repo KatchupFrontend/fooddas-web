@@ -2,8 +2,10 @@ import Link from "next/link";
 import { useContext } from "react";
 import { Store } from "../context/Store";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const ModalCart = ({ open, onClose }) => {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -13,11 +15,11 @@ const ModalCart = ({ open, onClose }) => {
   };
   if (!open) return null;
   return (
-    <div className="">
-      <div className="relative z-10  ">
+    <div className=" ">
+      <div className="relative z-10   ">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-        <div className="flex  inset-0 overflow-hidden  justify-center ">
-          <div className=" flex justify-center items-center overflow-hidden">
+        <div className="flex   inset-0 overflow-hidden  justify-center ">
+          <div className=" flex justify-center items-center overflow-hidden  ">
             <div className="pointer-events-none fixed inset-y-0 justify-center items-center flex max-w-full ">
               <div className="pointer-events-auto w-screen max-w-md ">
                 <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
@@ -63,7 +65,7 @@ const ModalCart = ({ open, onClose }) => {
                               <li className="flex py-6" key={food.id}>
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={item.image}
+                                    src={food.image}
                                     alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
                                     className="h-full w-full object-cover object-center"
                                   />
@@ -118,13 +120,13 @@ const ModalCart = ({ open, onClose }) => {
                       <p>$262.00</p>
                     </div>
 
-                    <div className="mt-6">
-                      <a
-                        href="#"
-                        className="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
+                    <div className="mt-6 flex items-center justify-center">
+                      <button
+                        onClick={() => router.push("login?redirect=/checkout")}
+                        className=" w-full rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
                       >
                         Checkout
-                      </a>
+                      </button>
                     </div>
                     <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                       <p>

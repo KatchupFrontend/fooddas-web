@@ -31,18 +31,19 @@ useEffect(() => {
     formState: { errors },
   } = useForm();
   const submitHandler = async ({ email, password }) => {
-    try {
-      const result = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
-      if (result.error) {
-        toast.error(result.err);
-      }
-    } catch(err) {
-      toast.error(getError(err));
-    }
+    console.log(email, password);
+    // try {
+    //   const result = await signIn("credentials", {
+    //     email,
+    //     password,
+    //     redirect: false,
+    //   });
+    //   if (result.error) {
+    //     toast.error(result.err);
+    //   }
+    // } catch(err) {
+    //   toast.error(getError(err));
+    // }
     
   };
   return (

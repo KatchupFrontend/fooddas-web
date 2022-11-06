@@ -1,10 +1,17 @@
 import Layout from "../../component/Layout";
 import { BsStarFill } from "react-icons/bs";
 import { FiShare2 } from "react-icons/fi";
+import { Store } from "../../context/Store";
+import { useContext } from "react";
 const Food = ({ food: { food } }) => {
-  const addToCartHandler =()=>{
+  const {state, dispatch} = useContext(Store);
 
-  }
+  const addToCartHandler =()=>{
+    const existItem = state.cart.cartItems.find((x)=>x._id === food._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    
+   dispatch({type: 'CART_ADD_ITEM', payload: {...food, quantity}});
+  };
   return (
     <div>
       <Layout>

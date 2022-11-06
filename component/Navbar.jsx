@@ -19,12 +19,9 @@ const Navbar = () => {
     const [cartItemsCount, setCartItemsCount] = useState(0);
 
 
-     useEffect(() => {
-       setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-     }, [cart.cartItems]);
-  
-
-  
+   useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
 
   return (
     <div>
@@ -55,6 +52,14 @@ const Navbar = () => {
           </div>
           <div className="m-2">
             <BiCart size={30}  onClick={() =>setOpenModal(true)}/>
+            {
+              cartItemsCount > 0 && (
+                <span className=" text-white px-1 rounded-full absolute top-0 mt-3 bg-red-500">
+                  {cartItemsCount}
+                </span>
+              )
+
+            }
           </div>
           <div
             className=" flex md:hidden m-2 cursor-pointer"
