@@ -12,10 +12,11 @@ import Layout from "../components/Layout";
 
 
 const LogIn = () => {
+ const { data: session } = useSession();
    const router = useRouter();
    const { redirect } = router.query;
 
-  const { data: session } = useSession();
+  
 
 useEffect(() => {
     if (session?.user) {
@@ -32,18 +33,18 @@ useEffect(() => {
   } = useForm();
   const submitHandler = async ({ email, password }) => {
     console.log(email, password);
-    // try {
-    //   const result = await signIn("credentials", {
-    //     email,
-    //     password,
-    //     redirect: false,
-    //   });
-    //   if (result.error) {
-    //     toast.error(result.err);
-    //   }
-    // } catch(err) {
-    //   toast.error(getError(err));
-    // }
+     try {
+       const result = await signIn("credentials", {
+        email,
+        password,
+         redirect: false,
+       });
+       if (result.error) {
+         toast.error(result.err);
+       }
+     } catch(err) {
+       toast.error(getError(err));
+     }
     
   };
   return (

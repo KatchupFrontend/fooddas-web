@@ -5,20 +5,21 @@ import { BiCart, BiMenuAltRight } from 'react-icons/bi';
 import { FaTimes } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
 import {  useEffect} from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 import ModalCart from './ModalCart';
-import { Store } from '../context/Store';
+import { Store } from '.././context/Store';
 
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false);
+  
+   const [nav, setNav] = useState(false);
    const [openModal, setOpenModal] = useState(false);
    const { status, data: session } = useSession();
-   const { state, dispatch } = useContext(Store);
-
+   const { state } = useContext(Store);
    const {cart} = state;
-    const [cartItemsCount, setCartItemsCount] = useState(0);
+   const [cartItemsCount, setCartItemsCount] = useState(0);
 
-
+   
    useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
@@ -39,7 +40,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex">
             {status === "loading" ? (
-              "loading"
+              "Loading"
             ) : session?.user ? (
               session.user.name
             ) : (
