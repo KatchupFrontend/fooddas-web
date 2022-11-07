@@ -14,7 +14,7 @@ const Navbar = () => {
   
    const [nav, setNav] = useState(false);
    const [openModal, setOpenModal] = useState(false);
-   const { status, data: session } = useSession();
+   
    const { state } = useContext(Store);
    const {cart} = state;
    const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -39,7 +39,7 @@ const Navbar = () => {
             <FaRegMoon className="text-gray-600" size={24} />
           </div>
           <div className="hidden md:flex">
-            {status === "loading" ? (
+            {/* {status === "loading" ? (
               "Loading"
             ) : session?.user ? (
               session.user.name
@@ -49,7 +49,7 @@ const Navbar = () => {
                   Log In
                 </button>
               </Link>
-            )}
+            )} */}
           </div>
           <div className="m-2">
             <BiCart size={30}  onClick={() =>setOpenModal(true)}/>

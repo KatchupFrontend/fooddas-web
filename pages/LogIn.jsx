@@ -31,6 +31,7 @@ useEffect(() => {
     register,
     formState: { errors },
   } = useForm();
+  
   const submitHandler = async ({ email, password }) => {
     console.log(email, password);
      try {

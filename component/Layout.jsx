@@ -13,7 +13,7 @@ const Layout = ({ children, title }) => {
         <meta name="description" content="" />
         <link rel="icon" href="./logo.png" />
       </Head>
-      <ToastContainer position="bottom-center" limit={1}>
+    
         <header>
           <Navbar />
         </header>
@@ -21,7 +21,6 @@ const Layout = ({ children, title }) => {
         <footer>
           <Footer />
         </footer>
-      </ToastContainer>
     </div>
   );
 };
