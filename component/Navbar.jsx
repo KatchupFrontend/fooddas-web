@@ -8,13 +8,13 @@ import {  useEffect} from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalCart from './ModalCart';
 import { Store } from '.././context/Store';
-
+import { ToastContainer } from 'react-toastify';
 
 const Navbar = () => {
   
    const [nav, setNav] = useState(false);
    const [openModal, setOpenModal] = useState(false);
-   
+   const { status, data: session } = useSession();
    const { state } = useContext(Store);
    const {cart} = state;
    const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -26,6 +26,7 @@ const Navbar = () => {
 
   return (
     <div>
+      <ToastContainer position="bottom-center" limit={1} />
       <ModalCart onClose={() => setOpenModal(false)} open={openModal} />
 
       <div className="flex justify-between py-4 px-4 ">
@@ -39,7 +40,7 @@ const Navbar = () => {
             <FaRegMoon className="text-gray-600" size={24} />
           </div>
           <div className="hidden md:flex">
-            {/* {status === "loading" ? (
+            {status === "loading" ? (
               "Loading"
             ) : session?.user ? (
               session.user.name
@@ -49,18 +50,15 @@ const Navbar = () => {
                   Log In
                 </button>
               </Link>
-            )} */}
+            )}
           </div>
           <div className="m-2">
-            <BiCart size={30}  onClick={() =>setOpenModal(true)}/>
-            {
-              cartItemsCount > 0 && (
-                <span className=" text-white px-1 rounded-full absolute top-0 mt-3 bg-red-500">
-                  {cartItemsCount}
-                </span>
-              )
-
-            }
+            <BiCart size={30} onClick={() => setOpenModal(true)} />
+            {cartItemsCount > 0 && (
+              <span className=" text-white px-1 rounded-full absolute top-0 mt-3 bg-red-500">
+                {cartItemsCount}
+              </span>
+            )}
           </div>
           <div
             className=" flex md:hidden m-2 cursor-pointer"
