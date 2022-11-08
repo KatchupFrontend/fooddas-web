@@ -122,7 +122,7 @@ const ModalCart = ({ open, onClose }) => {
 
                     <div className="mt-6 flex items-center justify-center">
                       <button
-                        onClick={() => router.push("login?redirect=/checkout")}
+                        onClick={() => router.push("/Checkout")}
                         className=" w-full rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
                       >
                         Checkout

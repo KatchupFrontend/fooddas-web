@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Tabs = () => {
   return (
@@ -10,13 +10,13 @@ const Tabs = () => {
         <div className="">
           <input
             type="text"
-            className="bg-red-100 rounded-2xl p-2 focus:ring-2 focus:border-red-500 focus:ring-red-500 outline-none"
+            className="bg-gray-100 rounded-lg  p-2 focus:ring-2 focus:border-red-500 focus:ring-red-500 outline-none"
             placeholder="Search what you love"
           />
         </div>
       </div>
-      <div className='mx-3'>
-        <button className="bg-red-100 px-5 py-2 m-2 rounded-xl">All</button>
+      <div className="mx-3">
+        <button className="bg-red-100  px-5 py-2 m-2 rounded-xl ">All</button>
         <button className="bg-red-100 px-5 py-2 m-2 rounded-xl">
           Breakfast
         </button>
@@ -29,6 +29,6 @@ const Tabs = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Tabs
+export default Tabs;
