@@ -1,28 +1,37 @@
-import {FaRegMoon} from 'react-icons/fa'
-import Link from 'next/link';
-import { useContext, useState } from 'react';
-import { BiCart, BiMenuAltRight } from 'react-icons/bi';
-import { FaTimes } from 'react-icons/fa';
-import { useSession } from 'next-auth/react';
-import {  useEffect} from 'react';
-import 'react-toastify/dist/ReactToastify.css';
-import ModalCart from './ModalCart';
-import { Store } from '.././context/Store';
-import { ToastContainer } from 'react-toastify';
+import { FaRegMoon } from "react-icons/fa";
+import Link from "next/link";
+import { useContext, useState } from "react";
+import { BiCart, BiMenuAltRight } from "react-icons/bi";
+import { FaTimes } from "react-icons/fa";
+import { signOut, useSession } from "next-auth/react";
+import { useEffect } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import ModalCart from "./ModalCart";
+import { Store } from ".././context/Store";
+import { ToastContainer } from "react-toastify";
+import { Menu, Button } from "@headlessui/react";
+import DropdownLink from "./DropdownLink";
+import Cookies from "js-cookie";
+
+
 
 const Navbar = () => {
-  
-   const [nav, setNav] = useState(false);
-   const [openModal, setOpenModal] = useState(false);
-   const { status, data: session } = useSession();
-   const { state } = useContext(Store);
-   const {cart} = state;
-   const [cartItemsCount, setCartItemsCount] = useState(0);
+  const [nav, setNav] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const { status, data: session } = useSession();
+  const { state , dispatch} = useContext(Store);
+  const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
 
-   
-   useEffect(() => {
+  useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
+
+ const logoutClickHandler = () => {
+    Cookies.remove('cart');
+    dispatch({ type: 'CART_RESET'})
+    signOut({ callbackUrl: "/LogIn" });
+  }
 
   return (
     <div>
@@ -43,7 +52,35 @@ const Navbar = () => {
             {status === "loading" ? (
               "Loading"
             ) : session?.user ? (
-              session.user.name
+              <Menu as="div" className="relative inline-block">
+                <Menu.Button className="text-blue-600 ">
+                  {session.user.name}
+                </Menu.Button>
+                <Menu.Items className="absolute right-0 origin-top-right shadow-lg">
+                  <Menu.Item className="">
+                    <DropdownLink className="dropdown-link" href="/profile">
+                      Profile
+                    </DropdownLink>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <DropdownLink
+                      className="dropdown-link"
+                      href="/order-history"
+                    >
+                      Order History
+                    </DropdownLink>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <a
+                      className="dropdown-link"
+                      href="#"
+                      onClick={logoutClickHandler}
+                    >
+                      Logout
+                    </a>
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
             ) : (
               <Link href="/LogIn">
                 <button className="bg-red-500 text-white px-4 py-2 rounded-lg m-1">
@@ -111,6 +148,7 @@ const Navbar = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Navbar;``
+export default Navbar;
+``;
