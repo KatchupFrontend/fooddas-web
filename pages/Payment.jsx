@@ -1,6 +1,7 @@
 import React from 'react'
 import HiCash from 'react-icons/hi'
 import Layout from '../component/Layout'
+import Link from 'next/link'
 
 const Payment = () => {
   const  paymentMethods = [
@@ -31,19 +32,21 @@ const Payment = () => {
                   Select A Payment Method
                 </h1>
               </div>
-              <div class="flex flex-wrap -m-4 text-center">
-                {paymentMethods.map((paymentMethod) => (
-                  <div class="p-4 md:w-1/3 sm:w-1/3 w-full">
-                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                      <div class=" w-20 h-12 mb-3 inline-block">
-                        <img src={paymentMethod.Image} alt="" />
-                      </div>
+              <Link href="/Confirm">
+                <div class="flex flex-wrap -m-4 text-center">
+                  {paymentMethods.map((paymentMethod) => (
+                    <div class="p-4 md:w-1/3 sm:w-1/3 w-full ">
+                      <div class="border-2 border-gray-200 px-4 py-6 rounded-lg  hover:border-red-600 ">
+                        <div class=" w-20 h-12 mb-3 inline-block">
+                          <img src={paymentMethod.Image} alt="" />
+                        </div>
 
-                      <p class="leading-relaxed">{paymentMethod.name}</p>
+                        <p class="leading-relaxed">{paymentMethod.name}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </Link>
             </div>
           </section>
         </Layout>
