@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { BiCart, BiMenuAltRight } from "react-icons/bi";
 import { FaTimes } from "react-icons/fa";
-import { signOut, useSession } from "next-auth/react";
+
 import { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import ModalCart from "./ModalCart";
@@ -18,7 +18,7 @@ import Cookies from "js-cookie";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const { status, data: session } = useSession();
+  
   const { state , dispatch} = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -54,7 +54,7 @@ const Navbar = () => {
           
               <Menu as="div" className="relative inline-block">
                 <Menu.Button className="text-blue-600 ">
-                  {session.user.name}
+              
                 </Menu.Button>
                 <Menu.Items className="absolute right-0 origin-top-right shadow-lg">
                   <Menu.Item className="">
