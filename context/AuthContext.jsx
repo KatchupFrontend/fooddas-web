@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from 'react'
-import { auth } from '../firebase';
+import { auth , db} from '../firebase';
 import {onAuthStateChanged,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
@@ -8,47 +8,33 @@ import {onAuthStateChanged,
     GoogleAuthProvider,
     signInWithPopup
 } from 'firebase/auth'
+import { doc, setDoc } from "firebase/firestore";
 
 
-
-// const signInWithGoogle = () => {
-//   signInWithPopup(auth, provider)
-//     .then((result) => {
-//       const credential = GoogleAuthProvider.credentialFromResult(result);
-//       const user = result.user;
-//       toast.success("Login successfully");
-//       router("/");
-//       // ...
-//     })
-//     .catch((error) => {
-//       // Handle Errors here.
-//       toast.error(error.message);
-//     });
-// };
-// const resetPassword = (e) => {
-//   e.preventDefault();
-
-//   sendPasswordResetEmail(auth, email)
-//     .then(() => {
-//       // Password reset email sent!
-//       toast.success("Password reset email sent");
-//     })
-//     .catch((error) => {
-//       const errorCode = error.code;
-//       toast.error(error.message);
-//       // ..
-//     });
-// };
 
 const AuthContext = createContext();
 
 export function AuthContextProvider({children}){
     const [user, setUser] = useState({}); 
      const provider = new GoogleAuthProvider();
+     
 
-    function signup(email, password){
-        return createUserWithEmailAndPassword(auth, email, password)
+
+     const signup = async (email, password) => {
+        
+            await createUserWithEmailAndPassword(auth, email, password
+            );
+            await setDoc(doc(db, "users", email), {
+                orderedItems: [],
+              });
+    
     }
+//    function signup(email, password) {
+//      createUserWithEmailAndPassword(auth, email, password);
+//      setDoc(doc(db, "users", email), {
+//        orderedItems: [],
+//      });
+//    }
 
     function login(email, password){
         return signInWithEmailAndPassword(auth, email, password)
@@ -64,6 +50,7 @@ export function AuthContextProvider({children}){
 
     function signInWithGoogle(){
         return signInWithPopup(auth, provider)
+
     }
 
     useEffect(() => {

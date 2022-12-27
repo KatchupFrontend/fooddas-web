@@ -3,12 +3,15 @@ import { useState } from "react";
 import Layout from "../component/Layout";
 import { UserAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
+import { db } from "../firebase";
+import {arrayUnion, doc, setDoc} from "firebase/firestore";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { user, signup } = UserAuth();
 
- 
+
+
   const router = useRouter();
   const handleSubmit =  async (e) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ const SignUp = () => {
           router.push("/");
     }
     catch(error){
-      toast.error(error.message)
+    
     }
   }
 
