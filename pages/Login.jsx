@@ -1,10 +1,43 @@
 import React, {useState} from 'react'
 import Link from 'next/link';
 import Layout from '../component/Layout';
+import { UserAuth } from '../context/AuthContext';
+import {useRouter} from 'next/router';
 
 
 
 const Login = () => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {login, user,signInWithGoogle } = UserAuth();
+
+ const router = useRouter();
+  const handleLogin =  async (e) => {
+    e.preventDefault();
+
+    try {
+    await  login(email, password)
+    router.push('/')
+    }
+    catch(error){
+      console.log(error)
+    }
+
+  }
+  
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithGoogle();
+      alert("Login successful")
+      router.push('/')
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
+
 
   return (
     <Layout>
@@ -39,7 +72,7 @@ const Login = () => {
                 </span>
               </p>
             </div>
-            <button
+            <button onClick={handleGoogleLogin}
               aria-label="Continue with google"
               role="button"
               className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
@@ -80,7 +113,7 @@ const Login = () => {
               </p>
               <hr className="w-full bg-gray-400  " />
             </div>
-            <form>
+            <form className='handleLogin' onSubmit={handleLogin}>
               <div>
                 <lable className="text-sm font-medium leading-none text-gray-800">
                   Email
@@ -90,6 +123,7 @@ const Login = () => {
                   role="input"
                   required placeholder='Enter your email'
                   type="email"
+                  onChange={(e) => setEmail(e.target.value)}
                   className="bg-gray-200 border rounded focus:outline-none text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
               </div>
@@ -101,6 +135,7 @@ const Login = () => {
                   <input
                     aria-label="enter Password"
                     role="input"
+                    onChange={(e) => setPassword(e.target.value)}
                     required placeholder='Enter your password'
                     type="password"
                     className="bg-gray-200 border rounded focus:outline-none text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"

@@ -1,7 +1,24 @@
 import Link from "next/link";
+import { useState } from "react";
 import Layout from "../component/Layout";
+import { UserAuth } from "../context/AuthContext";
 
 const Reset = () => {
+  const [email, setEmail] = useState("");
+  const { user, resetPassword } = UserAuth();
+ 
+
+  const handleReset = async (e) => {
+    e.preventDefault();
+    try {
+      await resetPassword(email);
+      alert("Password reset email sent");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+  
+
   return (
     <Layout>
       <div className="h-full bg-gradient-to-tl from-red-400 to-black w-full py-16 px-4">
@@ -13,7 +30,7 @@ const Reset = () => {
             <p className="text-sm mt-4 font-medium leading-none text-red-500">
               A verification message will be sent to your email address
             </p>
-            <form>
+            <form className="pt-4" onSubmit={handleReset}>
               <div>
                 <lable className="text-sm font-medium leading-none text-gray-800">
                   Email
@@ -23,6 +40,7 @@ const Reset = () => {
                   role="input"
                   required
                   type="email"
+                  onChange={(e) => setEmail(e.target.value)}
                   className="bg-gray-200 border rounded focus:outline-none text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                   placeholder="Enter your email address"
                 />
