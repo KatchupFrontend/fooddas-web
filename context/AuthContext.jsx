@@ -72,6 +72,7 @@ export function AuthContextProvider({children}){
     }
     , []);
 
+
     return (
         <AuthContext.Provider value={{user, signup, login, logout, resetPassword, signInWithGoogle}}>
             {children}
@@ -80,7 +81,7 @@ export function AuthContextProvider({children}){
 
 }
 
-export function userAuth(){
+export function UserAuth(){
     return useContext(AuthContext)
 }
 

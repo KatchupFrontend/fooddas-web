@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Link from 'next/link';
 import Layout from '../component/Layout';
 
@@ -19,17 +19,26 @@ const Login = () => {
             >
               Login to your account
             </p>
-            <p className="text-sm mt-4 font-medium leading-none text-gray-500">
-              Dont have account?
-              <span
-                tabIndex={0}
-                role="link"
-                aria-label="Sign up here"
-                className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
-              >
-                <Link href={"/SignUp"}> Sign up here</Link>
-              </span>
-            </p>
+            <div className="">
+              <p className="text-md mt-4 font-medium leading-none text-gray-500">
+                Dont have account?
+                <span
+                  tabIndex={0}
+                  role="link"
+                  aria-label="Sign up here"
+                  className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
+                >
+                  <Link href={"/SignUp"}> Sign up here</Link>
+                </span>
+              </p>
+              <p className="text-md pt-4 text-gray-600">
+                Forgot password?
+                <span className="text-red-500 underline text-sm">
+                  
+                  <Link href="/Reset"> Click here</Link>
+                </span>
+              </p>
+            </div>
             <button
               aria-label="Continue with google"
               role="button"
@@ -71,40 +80,45 @@ const Login = () => {
               </p>
               <hr className="w-full bg-gray-400  " />
             </div>
-            <div>
-              <lable className="text-sm font-medium leading-none text-gray-800">
-                Email
-              </lable>
-              <input
-                aria-label="enter email adress"
-                role="input"
-                type="email"
-                className="bg-gray-200 border rounded focus:outline-none text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-              />
-            </div>
-            <div className="mt-6  w-full">
-              <lable className="text-md font-medium leading-none text-gray-800">
-                Password
-              </lable>
-              <div className="relative flex items-center justify-center">
+            <form>
+              <div>
+                <lable className="text-sm font-medium leading-none text-gray-800">
+                  Email
+                </lable>
                 <input
-                  aria-label="enter Password"
+                  aria-label="enter email adress"
                   role="input"
-                  type="password"
+                  required placeholder='Enter your email'
+                  type="email"
                   className="bg-gray-200 border rounded focus:outline-none text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
-                <div className="absolute right-0 mt-2 mr-3 cursor-pointer"></div>
               </div>
-            </div>
-            <div className="mt-8">
-              <button
-                role="button"
-                aria-label="create my account"
-                className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
-              >
-                Sign in
-              </button>
-            </div>
+              <div className="mt-6  w-full">
+                <lable className="text-md font-medium leading-none text-gray-800">
+                  Password
+                </lable>
+                <div className="relative flex items-center justify-center">
+                  <input
+                    aria-label="enter Password"
+                    role="input"
+                    required placeholder='Enter your password'
+                    type="password"
+                    className="bg-gray-200 border rounded focus:outline-none text-md font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                  />
+                  <div className="absolute right-0 mt-2 mr-3 cursor-pointer"></div>
+                </div>
+              </div>
+              <div className="mt-8">
+                <button
+                  role="button"
+                  aria-label="create my account"
+                  className="focus:ring-2 focus:ring-offset-2 focus:ring-red-700 text-sm font-semibold leading-none text-white focus:outline-none bg-red-700 border rounded hover:bg-red-600 py-4 w-full"
+                  type="submit"
+                >
+                  Sign in
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
