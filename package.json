@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
-    "@paystack/inline-js": "^2.12.6",
+    "@types/node": "^18.11.18",
     "bcryptjs": "^2.4.3",
     "firebase": "^9.15.0",
+    "fs": "^0.0.1-security",
     "js-cookie": "^3.0.1",
     "mongoose": "^6.7.1",
+    "net": "^1.0.2",
     "next": "12.3.1",
     "next-auth": "^4.15.0",
     "paystack": "^2.0.1",
@@ -23,7 +25,8 @@
     "react-hook-form": "^7.39.0",
     "react-icons": "^4.6.0",
     "react-responsive-carousel": "^3.2.23",
-    "react-toastify": "^9.1.1"
+    "react-toastify": "^9.1.1",
+    "tls": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.25",

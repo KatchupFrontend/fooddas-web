@@ -12,7 +12,7 @@ const Checkout = () => {
    const [name, setName] = useState("");
    const [phone, setPhone] = useState("");
     const { state, dispatch } = useContext(Store);
-    const amount = 2000;
+  
 
 
       const {

@@ -1,52 +1,70 @@
-import React from 'react'
-import { useState } from 'react';
-import Paystack from 'paystack';
+import React from "react";
+import { useState } from "react";
+import paystack from "paystack";
+
 
 
 const Try = () => {
-    const [email, setEmail] = useState('');
-    const [amount, setAmount] = useState(0);
-    const [number, setNumber] = useState('');
-    const [name, setName] = useState('');
+  const [email, setEmail] = useState("");
+  const amount = 2000;
+  const [number, setNumber] = useState("");
+  const [name, setName] = useState("");
 
+  const paystackClient = paystack(process.env.PAYSTACK_SECRET_KEY);
 
+  async function handlePayment(event) {
+  try{
+    const response = await paystack.transaction.initialize(
+        {
+            email,
+            amount,
+            callback_url:'https://your-callback-url.com/paystack/callback'
+        },
 
+    )
+    const authorizationUrl = response.data.authorization_url;
 
-const paywithPaystack = (e) => {
-       e.preventDefault();
+  }
+  catch(error){
+    console.log(error)
+  }
 
-       const paystack = new PaystackPop();
-       paystack.newTransaction({
-         key: "pk_live_ceb5e28498396c908f35a84006294fb2c4360b36",
-         email: email,
-         amount: amount * 100,
+  async function handlePaystackCallback(refernce);
+    try{
+    const response = await paystack.transaction.verify(refernce);
+    console.log(response)
 
-         //Successful payment
-         onSuccess(transaction) {
-           let msg = `Transaction Successful ${transaction.reference}`;
-           alert(msg);
-           form.current.reset();
-         },
-         onCancel() {
-           alert("Transaction Cancelled");
-         },
-       });
-     };
+  }
+  catch(error){
+    console.log(error)
+    }
+    }
 
 
 
 
   return (
     <div>
-        <form onSubmit={paywithPaystack}>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="name" onChange={(e)=>setName(e.target.value)}  value={name} />
-            <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
-            <button type="submit">Pay</button>
-        </form>
-
+      <form onSubmit={handlePayment}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="name"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+        />
+        <input
+          type="number"
+          onChange={(e) => setNumber(e.target.value)}
+          value={number}
+        />
+        <button type="submit">Pay</button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Try
+export default Try;
