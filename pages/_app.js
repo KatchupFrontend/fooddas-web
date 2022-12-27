@@ -1,13 +1,24 @@
+import { useRouter } from 'next/router';
 import { StoreProvider } from '.././context/Store'
+import Protected from '../components/Protected';
 import { AuthContextProvider } from '../context/AuthContext';
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
+const noAuthPages = ['/Login', '/SignUp', '/Reset']
+function MyApp({ Component, pageProps: {...pageProps } }) {
+ const router = useRouter();
   return (
     <AuthContextProvider>
       <StoreProvider>
-        <Component {...pageProps} />
+        {noAuthPages.includes(router.pathname) ? (
+          <Component {...pageProps} />
+        ) : (
+          <Protected>
+            <Component {...pageProps} />
+          </Protected>
+        )}
+      
       </StoreProvider>
     </AuthContextProvider>
   );

@@ -27,7 +27,7 @@ const SignUp = () => {
 
   
   return (
-    <Layout>
+    
       <div className="h-full bg-gradient-to-tl from-red-400 to-black w-full py-16 px-4">
         <div className="flex flex-col items-center justify-center">
           <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
@@ -87,7 +87,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    
   );
 };
 

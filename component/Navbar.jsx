@@ -9,9 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import ModalCart from "./ModalCart";
 import { Store } from ".././context/Store";
 import { ToastContainer } from "react-toastify";
-import { Menu, Button } from "@headlessui/react";
-import DropdownLink from "./DropdownLink";
 import Cookies from "js-cookie";
+import { UserAuth } from "../context/AuthContext";
 
 
 
@@ -22,16 +21,25 @@ const Navbar = () => {
   const { state , dispatch} = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
+  const {user, logout} = UserAuth();
 
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
 
- const logoutClickHandler = () => {
+ const handleLogout = async () => {
+  try {
+    await logout();
+
     Cookies.remove('cart');
     dispatch({ type: 'CART_RESET'})
-    signOut({ callbackUrl: "/LogIn" });
+    
   }
+  catch (error) {
+    console.log(error);
+  }
+}
+
 
   return (
     <div>
@@ -49,10 +57,7 @@ const Navbar = () => {
             <FaRegMoon className="text-gray-600" size={24} />
           </div>
           <div className="hidden md:flex">
-            
-          
-          
-              <Menu as="div" className="relative inline-block">
+            {/* <Menu as="div" className="relative inline-block">
                 <Menu.Button className="text-blue-600 ">
               
                 </Menu.Button>
@@ -81,13 +86,28 @@ const Navbar = () => {
                   </Menu.Item>
                 </Menu.Items>
               </Menu>
-          
-              <Link href="/LogIn">
-                <button className="bg-red-500 text-white px-4 py-2 rounded-lg m-1">
-                  Log In
-                </button>
-              </Link>
-          
+           */}
+            {user ? (
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-lg m-1"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link href="/SignUp">
+                  <button className="bg-gray-200 text-black px-4 py-2 rounded-lg m-1">
+                    Sign Up
+                  </button>
+                </Link>
+                <Link href="/Login">
+                  <button className="bg-red-500 text-white px-4 py-2 rounded-lg m-1">
+                    Log in
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
           <div className="m-2">
             <BiCart size={30} onClick={() => setOpenModal(true)} />
@@ -129,16 +149,35 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="pt-5">
-                <Link href="/SignUp">
-                  <h2 className="text-black text-lg cursor-pointer hover:text-red-500">
-                    Create an account
-                  </h2>
-                </Link>
-                <Link href="/LogIn">
-                  <h2 className="text-black text-lg cursor-pointer hover:text-red-500">
-                    Already have an account
-                  </h2>
-                </Link>
+                {user ? (
+                  <>
+                    <Link href="/">
+                      <h2 className="text-black text-lg cursor-pointer hover:text-red-500">
+                        My Orders
+                      </h2>
+                    </Link>
+
+                    <button
+                      className="bg-red-500 text-white px-4 py-2 rounded-lg m-1"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/SignUp">
+                      <h2 className="text-black text-lg cursor-pointer hover:text-red-500">
+                        Create an account
+                      </h2>
+                    </Link>
+                    <Link href="/Login">
+                      <h2 className="text-black text-lg cursor-pointer hover:text-red-500">
+                        Already have an account
+                      </h2>
+                    </Link>
+                  </>
+                )}
               </div>
 
               <div></div>
