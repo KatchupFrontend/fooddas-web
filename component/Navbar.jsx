@@ -49,9 +49,9 @@ const Navbar = () => {
             <FaRegMoon className="text-gray-600" size={24} />
           </div>
           <div className="hidden md:flex">
-            {status === "loading" ? (
-              "Loading"
-            ) : session?.user ? (
+            
+          
+          
               <Menu as="div" className="relative inline-block">
                 <Menu.Button className="text-blue-600 ">
                   {session.user.name}
@@ -81,13 +81,13 @@ const Navbar = () => {
                   </Menu.Item>
                 </Menu.Items>
               </Menu>
-            ) : (
+          
               <Link href="/LogIn">
                 <button className="bg-red-500 text-white px-4 py-2 rounded-lg m-1">
                   Log In
                 </button>
               </Link>
-            )}
+          
           </div>
           <div className="m-2">
             <BiCart size={30} onClick={() => setOpenModal(true)} />

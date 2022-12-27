@@ -1,6 +1,6 @@
 import Navbar from "./Home/Navbar"
 import Footer from "./Home/Footer"
-import { useSession } from "next-auth/react"
+
 
 
 
