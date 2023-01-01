@@ -6,8 +6,9 @@ import { useState } from 'react';
 
 
 import Link from 'next/link';
+import { db } from '../firebase';
 import { UserAuth } from '../context/AuthContext';
-import { addDoc , collection} from 'firebase/firestore';
+import { doc , arrayUnion, collection, updateDoc} from 'firebase/firestore';
 
 const Checkout = () => {
   const {user} = UserAuth();
@@ -24,27 +25,30 @@ const Checkout = () => {
     const removeHandler = (food) => {
       dispatch({ type: "CART_REMOVE_ITEM", payload: food });
     };
-
+  
+    const orderItem = doc(db, 'users', `user?.email`);
     const checkoutHandler = async (e) => {
       e.preventDefault();
       if(!name || !email || !phone){
         alert('Please fill in all fields')
       }
       else{
-        const {uid, email} = user;
-        await addDoc(collection(db, "orderedItems"), {
-          uid,
-          email,
-          name,
-          phone,
-          cartItems,
-          Total,
+        await updateDoc(orderItem, {
+          orderedItems: arrayUnion({
+            name,
+            email,
+            phone,  
+            cartItems,
+            uid,
+            total
+          })
+          
         });
         dispatch({ type: "CART_CLEAR" }); 
       }
     };
 
-
+ console.log(cartItems)
       
     //   props.history.push("/signin?redirect=shipping");
     // };
