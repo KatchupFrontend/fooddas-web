@@ -10,7 +10,7 @@ const Tabs = () => {
         <div className="">
           <input
             type="text"
-            className="bg-red-100 rounded-2xl p-2 focus:ring-2 focus:border-red-500 focus:ring-red-500 outline-none"
+            className="bg--100 rounded-2xl p-2 focus:ring-2 focus:border-gray-100 focus:ring-gray-100 outline-none"
             placeholder="Search what you love"
           />
         </div>

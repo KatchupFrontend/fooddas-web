@@ -3,14 +3,14 @@ import React from "react";
 const Tabs = () => {
   return (
     <div>
-      <div className="flex m-10 justify-between">
-        <div className="">
+      <div className="flex m-10 md:justify-between flex-col">
+        <div className="py-3">
           <h2 className="text-2xl font-bold">Categories</h2>
         </div>
         <div className="">
           <input
             type="text"
-            className="bg-gray-100 rounded-lg  p-2 focus:ring-2 focus:border-red-500 focus:ring-red-500 outline-none"
+            className="bg-gray-100 rounded-lg  p-2 focus:ring-2 focus:border-gray-300 focus:ring-gray-300 outline-none"
             placeholder="Search what you love"
           />
         </div>
