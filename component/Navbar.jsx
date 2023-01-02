@@ -13,7 +13,6 @@ import Cookies from "js-cookie";
 import { UserAuth } from "../context/AuthContext";
 
 
-
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -49,7 +48,11 @@ const Navbar = () => {
       <div className="flex justify-between py-4 px-4 ">
         <div>
           <Link href="/">
-            <img src="./logo.png" alt="" className="w-40 h-10" />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/opionrooms.appspot.com/o/logo.png?alt=media&token=2ad7ff1f-a0b6-4917-a8de-adb1e99035ad"
+              alt="logo"
+              className="w-40 h-10"
+            />
           </Link>
         </div>
         <div className="flex">
@@ -57,36 +60,6 @@ const Navbar = () => {
             <FaRegMoon className="text-gray-600" size={24} />
           </div>
           <div className="hidden md:flex">
-            {/* <Menu as="div" className="relative inline-block">
-                <Menu.Button className="text-blue-600 ">
-              
-                </Menu.Button>
-                <Menu.Items className="absolute right-0 origin-top-right shadow-lg">
-                  <Menu.Item className="">
-                    <DropdownLink className="dropdown-link" href="/profile">
-                      Profile
-                    </DropdownLink>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <DropdownLink
-                      className="dropdown-link"
-                      href="/order-history"
-                    >
-                      Order History
-                    </DropdownLink>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <a
-                      className="dropdown-link"
-                      href="#"
-                      onClick={logoutClickHandler}
-                    >
-                      Logout
-                    </a>
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
-           */}
             {user ? (
               <button
                 className="bg-red-500 text-white px-4 py-2 rounded-lg m-1"

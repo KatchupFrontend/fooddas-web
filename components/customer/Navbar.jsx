@@ -23,7 +23,7 @@ const Navbar = () => {
 
         <div className="flex shadow-lg sticky z-50 bg-white justify-between py-4 px-4 w-full ">
           <div>
-            <img src="./logo.png" alt="" className="w-40 h-10" />
+            <img src={logo} alt="" className="w-40 h-10" />
           </div>
           <div className="flex">
             <div className="bg-gray-200 m-1 px-2 rounded-lg py-1 hover:bg-gray-300">

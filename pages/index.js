@@ -8,7 +8,6 @@ import FoodItem from '../component/FoodItem'
 const Home = () => {
   return (
     <Layout title="Home Page">
-    
     <Tabs/>
     <FoodItem/>
     </Layout>

@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { db } from '../firebase';
 import { UserAuth } from '../context/AuthContext';
 import { doc , arrayUnion, collection, updateDoc} from 'firebase/firestore';
+import dynamic from 'next/dynamic';
+
 
 const Checkout = () => {
   const {user} = UserAuth();
@@ -26,9 +28,9 @@ const Checkout = () => {
       dispatch({ type: "CART_REMOVE_ITEM", payload: food });
     };
   
-    const orderItem = doc(db, 'users', `user?.email`);
+    const orderItem = doc(db, 'users', `${user?.email}`);
     const checkoutHandler = async (e) => {
-      e.preventDefault();
+      
       if(!name || !email || !phone){
         alert('Please fill in all fields')
       }
@@ -38,9 +40,10 @@ const Checkout = () => {
             name,
             email,
             phone,  
-            cartItems,
             uid,
-            total
+            food,
+            price,
+
           })
           
         });
@@ -48,78 +51,30 @@ const Checkout = () => {
       }
     };
 
- console.log(cartItems)
-      
-    //   props.history.push("/signin?redirect=shipping");
-    // };
-
-    
+  
 
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="py-16 px-4 md:px-6 2xl:px-0 flex justify-center items-center 2xl:mx-auto 2xl:container">
-        <div className="flex flex-col justify-start items-start w-full space-y-9">
-          <div className="flex justify-start flex-col items-start space-y-2">
-            <button className="flex flex-row items-center text-gray-600 hover:text-gray-500 space-x-1">
-              <svg
-                className="fill-stroke"
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2.91681 7H11.0835"
-                  stroke="currentColor"
-                  strokeWidth="0.666667"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.91681 7L5.25014 9.33333"
-                  stroke="currentColor"
-                  strokeWidth="0.666667"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.91681 7.00002L5.25014 4.66669"
-                  stroke="currentColor"
-                  strokeWidth="0.666667"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <p className="text-sm leading-none">Back</p>
-            </button>
-            <p className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800 text-center">
-              Checkout
-            </p>
-            <p className="text-base leading-normal sm:leading-4 text-gray-600">
-            </p>
-          </div>
+    <Layout>
+      <div className="flex justify-center items-center">
+        <div className="py-16 px-4 md:px-6 2xl:px-0 flex justify-center items-center 2xl:mx-auto 2xl:container">
+          <div className="flex flex-col justify-start items-start w-full space-y-9">
+            <div className="flex justify-start flex-col items-start space-y-2"> 
+            </div>
 
-          <div className="flex flex-col xl:flex-row justify-center xl:justify-between space-y-6 xl:space-y-0 xl:space-x-6 w-full">
-            <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
-              <div className="flex justify-start item-start space-y-2 flex-col ">
-                <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">
-                  Order #13432
-                </h1>
-                <p className="text-base font-medium leading-6 text-gray-600">
-                  21st Mart 2021 at 10:34 PM
-                </p>
-              </div>
-              <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch  w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
-                <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
-                  <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
-                    <p className="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">
-                      Customer’s Cart
-                    </p>
-                    <div className="mt-4 md:mt-6 flex  flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full ">
-                      {cartItems.length === 0 ? (
+            <div className="flex flex-col xl:flex-row justify-center xl:justify-between space-y-6 xl:space-y-0 xl:space-x-6 w-full">
+              <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+               
+                <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch  w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
+                  <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
+                    <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
+                      <p className="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">
+                        Customer’s Cart
+                      </p>
+                      <div className="mt-4 md:mt-6 flex  flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full ">
+                         {cartItems.length === 0 ? (
                         <div>
+                          
                           Cart is empty.
                           <Link href="/customer">Make an order</Link>
                         </div>
@@ -128,6 +83,7 @@ const Checkout = () => {
                           <div className="flow-root">
                             <ul className="-my-6 divide-y divide-gray-200">
                               {cartItems.map((food) => (
+                              
                                 <li className="flex py-6" key={food.id}>
                                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <img
@@ -170,48 +126,51 @@ const Checkout = () => {
                             </ul>
                           </div>
                         </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
-                    <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6   ">
-                      <h3 className="text-xl font-semibold leading-5 text-gray-800">
-                        Summary
-                      </h3>
-                      <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
-                        <div className="flex justify-between  w-full">
-                          <p className="text-base leading-4 text-gray-800">
-                            Subtotal
-                          </p>
-                          <p className="text-base leading-4 text-gray-600">
-                            $56.00
-                          </p>
-                        </div>
-
-                        <div className="flex justify-between items-center w-full">
-                          <p className="text-base leading-4 text-gray-800">
-                            Delivery fee
-                          </p>
-                          <p className="text-base leading-4 text-gray-600">
-                            $8.00
-                          </p>
-                        </div>
+                      )} 
                       </div>
-                      <div className="flex justify-between items-center w-full">
-                        <p className="text-base font-semibold leading-4 text-gray-800">
-                          Total
-                        </p>
-                        <p className="text-base font-semibold leading-4 text-gray-600">
-                          $36.00
-                        </p>
+                    </div>
+                    <div className="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
+                      <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6   ">
+                        <h3 className="text-xl font-semibold leading-5 text-gray-800">
+                          Summary
+                        </h3>
+                        <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
+                          <div className="flex justify-between  w-full">
+                            <p className="text-base leading-4 text-gray-800">
+                              Subtotal
+                            </p>
+                            <p className="text-base leading-4 text-gray-600">
+                              $56.00
+                            </p>
+                          </div>
+
+                          <div className="flex justify-between items-center w-full">
+                            <p className="text-base leading-4 text-gray-800">
+                              Delivery fee
+                            </p>
+                            <p className="text-base leading-4 text-gray-600">
+                              $8.00
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center w-full">
+                          <p className="text-base font-semibold leading-4 text-gray-800">
+                            Total
+                          </p>
+                          <p className="text-base font-semibold leading-4 text-gray-600">
+                            $36.00
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          
-              <form className="p-8 bg-gray-100 flex flex-col lg:w-full xl:w-3/5" onSubmit={checkoutHandler}>
+
+              <form
+                className="p-8 bg-gray-100 flex flex-col lg:w-full xl:w-3/5"
+                onSubmit={checkoutHandler}
+              >
                 <h1 className="font-bold text-center text-2xl">
                   Customer Details
                 </h1>
@@ -243,13 +202,13 @@ const Checkout = () => {
                       placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-
                     />
                   </div>
                 </div>
 
                 <button
-                  className="mt-8 border border-transparent hover:border-gray-300 bg-red-500 hover:bg-red-700 text-white hover:text-white flex justify-center items-center py-4 rounded w-full" type='submit'
+                  className="mt-8 border border-transparent hover:border-gray-300 bg-red-500 hover:bg-red-700 text-white hover:text-white flex justify-center items-center py-4 rounded w-full"
+                  type="submit"
                   onClick={""}
                 >
                   <div>
@@ -257,14 +216,15 @@ const Checkout = () => {
                   </div>
                 </button>
               </form>
-          
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 
 
 }
 
-export default Checkout
+
+export default dynamic(() => Promise.resolve(Checkout), { ssr: false });
