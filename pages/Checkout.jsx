@@ -42,7 +42,7 @@ const Checkout = () => {
             phone,  
             uid,
             food,
-            price,
+        
 
           })
           
