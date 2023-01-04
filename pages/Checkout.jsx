@@ -35,10 +35,7 @@ const Checkout = () => {
         alert('Please fill in all fields')
       }
       else{
-        await updateDoc(orderItem, {
-          orderedItems: arrayUnion({
-            name,
-          
+        
             
         
 
