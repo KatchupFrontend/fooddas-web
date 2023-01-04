@@ -28,13 +28,7 @@ const Checkout = () => {
       dispatch({ type: "CART_REMOVE_ITEM", payload: food });
     };
   
-    const orderItem = doc(db, 'users', `${user?.email}`);
-    const checkoutHandler = async (e) => {
-      
-      if(!name || !email || !phone){
-        alert('Please fill in all fields')
-      }
-    
+   
 
   
 
