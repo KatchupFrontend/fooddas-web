@@ -38,10 +38,8 @@ const Checkout = () => {
         await updateDoc(orderItem, {
           orderedItems: arrayUnion({
             name,
-            email,
-            phone,  
-            uid,
-            food,
+          
+            
         
 
           })
