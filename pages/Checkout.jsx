@@ -34,17 +34,7 @@ const Checkout = () => {
       if(!name || !email || !phone){
         alert('Please fill in all fields')
       }
-      else{
-        
-            
-        
-
-          })
-          
-        });
-        dispatch({ type: "CART_CLEAR" }); 
-      }
-    };
+    
 
   
 
