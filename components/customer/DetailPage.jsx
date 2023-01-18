@@ -6,7 +6,7 @@ import {logo} from './logo.png'
 const DetailPage = () => {
   const [openModal,setOpenModal] = useState(false);
 
-    
+  
 
   return (
     <div>
